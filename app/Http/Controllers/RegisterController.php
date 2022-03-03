@@ -14,8 +14,9 @@ class RegisterController extends Controller
 
     public function create()
     {
-        return view('register');
+        return view('register.create');
     }
+
     public function store()
     {
         $attributes = request()->validate([
@@ -28,12 +29,9 @@ class RegisterController extends Controller
         $attributes['image'] = request()->file('image')->store('images');
 
         $user = User::create($attributes);
-//        auth()->login($user);
+        auth()->login($user);
 
-        return redirect('/profile')->with('success', 'Your account has been created.');
+        return redirect('/properties')->with('success', 'Your account has been created.');
     }
-    public function show()
-    {
-        return view('profile');
-    }
+
 }

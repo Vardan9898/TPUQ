@@ -11,14 +11,16 @@ class Tenancy extends Model
 
     protected $guarded = [];
 
+    protected $with = ['property', 'tenant'];
+
     public function property()
     {
         return $this->belongsTo(Property::class, 'property_id');
     }
 
-    public function tenants()
+    public function tenant()
     {
-        return $this->hasMany(Tenant::class, 'tenant_id');
+        return $this->belongsTo(Tenant::class, 'tenant_id');
     }
 
     public function user()

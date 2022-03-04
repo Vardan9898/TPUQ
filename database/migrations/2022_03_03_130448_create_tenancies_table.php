@@ -15,6 +15,7 @@ return new class extends Migration
     {
         Schema::create('tenancies', function (Blueprint $table) {
             $table->id();
+            $table->foreignId('user_id')->constrained()->cascadeOnDelete();
             $table->foreignId('property_id')->constrained()->cascadeOnDelete();
             $table->foreignId('tenant_id')->constrained()->cascadeOnDelete();
             $table->timestamps();

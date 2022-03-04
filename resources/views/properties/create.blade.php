@@ -14,7 +14,8 @@
         </div>
         <div class="mb-3">
             <label class="form-label">Description</label>
-            <textarea type="text" class="form-control" id="description" name="description">{{ old('description') }}</textarea>
+            <textarea type="text" class="form-control" id="description"
+                      name="description">{{ old('description') }}</textarea>
         </div>
         <div class="input mb-4">
             <label for="image" class="form-label mb-3">Property image</label>
@@ -25,8 +26,10 @@
             <input type="number" class="form-control" id="price" name="price" value="{{ old('price') }}">
         </div>
         <div class="form-check form-switch mb-3">
-            <input class="form-check-input" type="checkbox" id="flexSwitchCheckDefault" name="mortgage_status" value="1">
-            <label style="color: red" class="form-check-label" for="flexSwitchCheckDefault">If your property is mortgaged please check this input</label>
+            <input class="form-check-input" type="checkbox" id="flexSwitchCheckDefault" name="mortgage_status"
+                   value="1">
+            <label style="color: red" class="form-check-label" for="flexSwitchCheckDefault">If your property is
+                mortgaged please check this input</label>
         </div>
 
         @include('error')

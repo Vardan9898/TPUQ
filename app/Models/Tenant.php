@@ -15,6 +15,7 @@ class Tenant extends Model
     {
         return $this->hasMany(Property::class);
     }
+
     public function tenancies()
     {
         return $this->hasMany(Tenancy::class);

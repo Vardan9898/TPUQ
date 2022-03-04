@@ -14,24 +14,25 @@ class PropertyController extends Controller
             'properties' => Property::latest()->paginate(7)->withQueryString(),
         ]);
     }
+
     public function create()
     {
         return view('properties.create');
     }
+
     public function store()
     {
         $attributes = request()->validate([
-            'name'       => 'required',
-            'image'   => 'required|image',
-            'address'        => 'required',
-            'description'        => 'required',
-            'mortgage_status'        => 'boolean',
-            'price' => 'required|numeric',
+            'name'            => 'required',
+            'image'           => 'required|image',
+            'address'         => 'required',
+            'description'     => 'required',
+            'mortgage_status' => 'boolean',
+            'price'           => 'required|numeric',
         ]);
-        if(request()->get('mortgage_status') == null){
+        if (request()->get('mortgage_status') == null) {
             $mortgage_status = 0;
-        }
-        else{
+        } else {
             $mortgage_status = request('mortgage_status');
         }
 
@@ -45,7 +46,7 @@ class PropertyController extends Controller
 
     public function show(Property $property)
     {
-        return view('properties.show',[
+        return view('properties.show', [
             'property' => $property,
         ]);
     }
@@ -60,16 +61,15 @@ class PropertyController extends Controller
     public function update(Property $property)
     {
         $attributes = request()->validate([
-            'name'       => 'required',
-            'image'   => 'image',
-            'address'        => 'required',
-            'description'        => 'required',
-            'mortgage_status'        => 'boolean',
-            'price' => 'required|numeric',
+            'name'            => 'required',
+            'image'           => 'image',
+            'address'         => 'required',
+            'description'     => 'required',
+            'mortgage_status' => 'boolean',
+            'price'           => 'required|numeric',
         ]);
 
-        if ($attributes['image'] ?? false)
-        {
+        if ($attributes['image'] ?? false) {
             $attributes['image'] = request()->file('image')->store('prop_img');
         }
 

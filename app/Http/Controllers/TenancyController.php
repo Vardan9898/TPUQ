@@ -11,8 +11,8 @@ class TenancyController extends Controller
 {
     public function index()
     {
-        return view('tenancies.index',[
-            'tenancies' => Tenancy::latest()->paginate(7)->withQueryString()
+        return view('tenancies.index', [
+            'tenancies' => Tenancy::latest()->paginate(7)->withQueryString(),
         ]);
     }
 
@@ -20,15 +20,15 @@ class TenancyController extends Controller
     {
         return view('tenancies.create', [
             'property' => $property,
-            'tenants' => Tenant::latest()->get()->all()
+            'tenants'  => Tenant::latest()->get()->all(),
         ]);
     }
 
     public function store(Tenant $tenant, Property $property)
     {
         $property->tenancies()->create([
-            'user_id' => request()->user()->id,
-            'tenant_id' => request('tenant')
+            'user_id'   => request()->user()->id,
+            'tenant_id' => request('tenant'),
         ]);
 
         return redirect('tenancies')->with('success', 'Tenancy created');
@@ -36,10 +36,10 @@ class TenancyController extends Controller
 
     public function edit(Tenancy $tenancy)
     {
-        return view('tenancies.edit',[
-            'tenancy' => $tenancy,
+        return view('tenancies.edit', [
+            'tenancy'     => $tenancy,
             'tenant_name' => $tenancy->tenant['name'],
-            'tenants' => Tenant::latest()->get()->all()
+            'tenants'     => Tenant::latest()->get()->all(),
         ]);
     }
 

@@ -24,9 +24,9 @@ class TenantController extends Controller
     public function store()
     {
         $attributes = request()->validate([
-            'name'       => 'required|max:255',
+            'name'    => 'required|max:255',
             'image'   => 'required|image',
-            'address'     => 'required|max:255',
+            'address' => 'required|max:255',
         ]);
 
         $attributes['user_id'] = auth()->id();
@@ -40,20 +40,19 @@ class TenantController extends Controller
     public function edit(Tenant $tenant)
     {
         return view('tenants.edit', [
-            'tenant' => $tenant
+            'tenant' => $tenant,
         ]);
     }
 
     public function update(Tenant $tenant)
     {
         $attributes = request()->validate([
-            'name'       => 'required',
+            'name'    => 'required',
             'image'   => 'image',
-            'address'   => 'required',
+            'address' => 'required',
         ]);
 
-        if ($attributes['image'] ?? false)
-        {
+        if ($attributes['image'] ?? false) {
             $attributes['image'] = request()->file('image')->store('tenants');
         }
 

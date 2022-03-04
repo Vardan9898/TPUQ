@@ -20,11 +20,11 @@ class RegisterController extends Controller
     public function store()
     {
         $attributes = request()->validate([
-            'name' => 'required|max:255',
+            'name'     => 'required|max:255',
             'username' => 'required|max:255|min:3|unique:users,username',
-            'email' => 'required|email|max:255|unique:users,email',
+            'email'    => 'required|email|max:255|unique:users,email',
             'password' => 'required|max:255|min:6',
-            'image' => 'required|image|max:500000'
+            'image'    => 'required|image|max:500000',
         ]);
         $attributes['image'] = request()->file('image')->store('images');
 

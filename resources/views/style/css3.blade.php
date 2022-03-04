@@ -65,6 +65,7 @@
         color: #fff;
         border-radius: 0 0 8px 8px;
     }
+
     .card-button-edit {
         display: flex;
         justify-content: center;

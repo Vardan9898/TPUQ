@@ -15,14 +15,13 @@ class SessionsController extends Controller
     public function store()
     {
         $attributes = request()->validate([
-            'email' => 'required|email',
-            'password' => 'required'
+            'email'    => 'required|email',
+            'password' => 'required',
         ]);
 
-        if (! auth()->attempt($attributes))
-        {
+        if (!auth()->attempt($attributes)) {
             throw ValidationException::withMessages([
-                'email' => 'Your provided credentials could not be verified.'
+                'email' => 'Your provided credentials could not be verified.',
             ]);
         }
 
@@ -30,6 +29,7 @@ class SessionsController extends Controller
 
         return redirect('/properties')->with('success', 'Welcome Back!');
     }
+
     public function destroy()
     {
         auth()->logout();

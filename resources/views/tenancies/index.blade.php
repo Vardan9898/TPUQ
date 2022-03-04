@@ -6,7 +6,7 @@
                     <div class="col-md-3">
                         <div class="card-sl">
                             <div class="card-image">
-                                <img src="{{ asset('storage/' . $tenancy->property->image) }}"  alt="image"/>
+                                <img src="{{ asset('storage/' . $tenancy->property->image) }}" alt="image"/>
                             </div>
 
                             @if($tenancy->property->mortgage_status == true)
@@ -39,7 +39,8 @@
                                     <button type="submit" class="card-button-delete">Delete</button>
                                 </form>
                             </div>
-                            <a href="/tenancies/{{ $tenancy->property->id }}/create" class="card-button-make mb-5">Make new tenancy for {{ $tenancy->property->name }}</a>
+                            <a href="/tenancies/{{ $tenancy->property->id }}/create" class="card-button-make mb-5">Make
+                                new tenancy for {{ $tenancy->property->name }}</a>
                         </div>
                     </div>
                 @endforeach
@@ -49,7 +50,6 @@
 
     </main>
 </x-layout>
-
 
 
 @include('style.css')

@@ -16,7 +16,8 @@
             <h3>Property price: ${{ $property->price }}</h3>
         </div>
         <div class="form-check">
-            <input class="form-check-input" type="radio" name="flexRadioDisabled" id="flexRadioDisabled" disabled {{ $property->mortgage_status == '1' ? 'checked' : '' }}>
+            <input class="form-check-input" type="radio" name="flexRadioDisabled" id="flexRadioDisabled"
+                   disabled {{ $property->mortgage_status == '1' ? 'checked' : '' }}>
             <label class="form-check-label" for="flexRadioDisabled">
                 Mortgaged status
             </label>

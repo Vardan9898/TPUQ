@@ -8,10 +8,11 @@ use Illuminate\Database\Eloquent\Model;
 class Property extends Model
 {
     use HasFactory;
+
     protected $guarded = [];
 
     protected $casts = [
-        'mortgage_status' => 'boolean'
+        'mortgage_status' => 'boolean',
     ];
 
     public function user()

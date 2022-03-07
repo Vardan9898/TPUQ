@@ -27,13 +27,13 @@ class SessionsController extends Controller
 
         session()->regenerate();
 
-        return redirect('/properties')->with('success', 'Welcome Back!');
+        return redirect()->action([PropertiesController::class, 'index'])->with('success', 'Welcome back!');
     }
 
     public function destroy()
     {
         auth()->logout();
 
-        return redirect('/')->with('success', 'Goodbye!');
+        return redirect()->action([RegisterController::class, 'index'])->with('success', 'Goodbye!');
     }
 }

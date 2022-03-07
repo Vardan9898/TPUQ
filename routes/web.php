@@ -1,10 +1,10 @@
 <?php
 
-use App\Http\Controllers\PropertyController;
+use App\Http\Controllers\PropertiesController;
 use App\Http\Controllers\RegisterController;
 use App\Http\Controllers\SessionsController;
-use App\Http\Controllers\TenancyController;
-use App\Http\Controllers\TenantController;
+use App\Http\Controllers\TenanciesController;
+use App\Http\Controllers\TenantsController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -19,43 +19,42 @@ use Illuminate\Support\Facades\Route;
 */
 //register
 Route::get('/', [RegisterController::class, 'index'])->middleware('guest')->name('home');
-Route::get('/register', [RegisterController::class, 'create'])->middleware('guest');
+Route::get('register', [RegisterController::class, 'create'])->middleware('guest');
 Route::post('register', [RegisterController::class, 'store'])->middleware('guest');
 
 //session
-Route::get('login', [SessionsController::class, 'create'])->middleware('guest')->name('login');
+Route::get('login', [SessionsController::class, 'create'])->middleware('guest');
 Route::post('login', [SessionsController::class, 'store'])->middleware('guest');
 Route::post('logout', [SessionsController::class, 'destroy'])->middleware('auth');
 
 //properties
 Route::group(['middleware' => ['auth']], function () {
-    Route::get('properties/create', [PropertyController::class, 'create']);
-    Route::post('properties/create', [PropertyController::class, 'store']);
-    Route::get('properties/{property}/edit', [PropertyController::class, 'edit']);
-    Route::patch('properties/{property}/edit', [PropertyController::class, 'update']);
-    Route::delete('properties/{property}/edit', [PropertyController::class, 'destroy']);
+    Route::get('properties/create', [PropertiesController::class, 'create']);
+    Route::post('properties/store', [PropertiesController::class, 'store']);
+    Route::get('properties/{property}/edit', [PropertiesController::class, 'edit']);
+    Route::patch('properties/{property}', [PropertiesController::class, 'update']);
+    Route::delete('properties/{property}/delete', [PropertiesController::class, 'destroy']);
 });
-Route::get('properties', [PropertyController::class, 'index']);
-Route::get('properties/{property:id}', [PropertyController::class, 'show']);
+Route::get('properties', [PropertiesController::class, 'index']);
+Route::get('properties/{property:id}', [PropertiesController::class, 'show']);
 
 //tenants
 Route::group(['middleware' => ['auth']], function () {
-    Route::get('/tenants', [TenantController::class, 'index']);
-    Route::get('tenants/create', [TenantController::class, 'create']);
-    Route::post('tenants/create', [TenantController::class, 'store']);
-    Route::get('tenants/{tenant}/edit', [TenantController::class, 'edit']);
-    Route::patch('tenants/{tenant}/edit', [TenantController::class, 'update']);
-    Route::delete('tenants/{tenant}/edit', [TenantController::class, 'destroy']);
+    Route::get('tenants', [TenantsController::class, 'index']);
+    Route::get('tenants/create', [TenantsController::class, 'create']);
+    Route::post('tenants/store', [TenantsController::class, 'store']);
+    Route::get('tenants/{tenant}/edit', [TenantsController::class, 'edit']);
+    Route::patch('tenants/{tenant}', [TenantsController::class, 'update']);
+    Route::delete('tenants/{tenant}/delete', [TenantsController::class, 'destroy']);
 });
 
-//Tenancy
+//tenancy
 Route::group(['middleware' => ['auth']], function () {
-    Route::get('/tenancies', [TenancyController::class, 'index']);
-    Route::get('/tenancies/{property}/create', [TenancyController::class, 'create']);
-    Route::post('/tenancies/{property}/create', [TenancyController::class, 'store']);
-    Route::delete('/tenancies/{tenancy}/delete', [TenancyController::class, 'destroy']);
-    Route::get('/tenancies/{tenancy}/edit', [TenancyController::class, 'edit']);
-    Route::patch('/tenancies/{tenancy}/edit', [TenancyController::class, 'update']);
-    Route::delete('/tenancies/{tenancy}', [TenancyController::class, 'destroy']);
+    Route::get('tenancies', [TenanciesController::class, 'index']);
+    Route::get('tenancies/{property}/create', [TenanciesController::class, 'create']);
+    Route::post('tenancies/{property}/store', [TenanciesController::class, 'store']);
+    Route::delete('tenancies/{tenancy}/delete', [TenanciesController::class, 'destroy']);
+    Route::get('tenancies/{tenancy}/edit', [TenanciesController::class, 'edit']);
+    Route::patch('tenancies/{tenancy}', [TenanciesController::class, 'update']);
 });
 

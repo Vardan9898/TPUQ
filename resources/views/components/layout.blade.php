@@ -10,7 +10,7 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
             integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"
             crossorigin="anonymous"></script>
-    <link rel="stylesheet" href="{{ asset('/storage/css/style-for-layout.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/style-for-layout.css') }}">
     <title>Tenancy project</title>
 </head>
 
@@ -20,7 +20,6 @@
         <nav class="navbar navbar-expand-lg navbar-scroll border-bottom border-dark" style="background-color: #FFC017">
             <div class="container">
                 <h4>Hi {{ auth()->user()->name }}</h4>
-                <a class="navbar-brand" href="#!"><i class="fab fa-mdb fa-4x"></i></a>
                 <button class="navbar-toggler" type="button" data-mdb-toggle="collapse"
                         data-mdb-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
                         aria-expanded="false"

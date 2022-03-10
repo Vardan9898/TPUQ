@@ -13,4 +13,7 @@ const mix = require('laravel-mix');
 
 mix.js('resources/js/app.js', 'public/js')
     .postCss('resources/css/app.css', 'public/css')
-    .postCss('resources/css/style-for-properties-index.css', 'public/css');
+    .postCss('resources/css/style-for-layout.css', 'public/css')
+    .postCss('resources/css/style-for-properties-index.css', 'public/css')
+    .postCss('resources/css/style-for-tenancies-index.css', 'public/css')
+    .postCss('resources/css/style-for-properties-show.css', 'public/css')

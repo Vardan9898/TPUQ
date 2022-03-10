@@ -3,15 +3,14 @@
 namespace App\Http\Controllers;
 
 use App\Models\Tenant;
-use Illuminate\Http\Request;
-use Illuminate\Validation\Rule;
 
 class TenantsController extends Controller
 {
     public function index()
     {
+        $tenants = Tenant::latest()->paginate(6)->withQueryString();
         return view('tenants.index', [
-            'tenants' => Tenant::latest()->paginate(6)->withQueryString(),
+            'tenants' => $tenants
         ]);
     }
 
@@ -29,7 +28,8 @@ class TenantsController extends Controller
         ]);
 
         $attributes['user_id'] = auth()->id();
-        $attributes['image'] = request()->file('image')->store('tenants');
+        request()->file('image')->store('public/tenants');
+        $attributes['image'] = request()->file('image')->hashName();
 
         Tenant::create($attributes);
 
@@ -52,7 +52,8 @@ class TenantsController extends Controller
         ]);
 
         if (request()->has('image')) {
-            $attributes['image'] = request()->file('image')->store('tenants');
+            request()->file('image')->store('public/tenants');
+            $attributes['image'] = request()->file('image')->hashName();
         }
 
         $tenant->update($attributes);

@@ -9,8 +9,10 @@ class PropertiesController extends Controller
 {
     public function index()
     {
+        $properties = Property::latest()->filter(request(['search']))->paginate(7)->withQueryString();
+
         return view('properties.index', [
-            'properties' => Property::latest()->paginate(7)->withQueryString(),
+            'properties' => $properties,
         ]);
     }
 
@@ -27,11 +29,12 @@ class PropertiesController extends Controller
             'address'         => 'required|string|max:255',
             'description'     => 'required|string|max:1000',
             'mortgage_status' => 'boolean',
-            'price'           => 'required|numeric|digits_between:1,255',
+            'price'           => 'required|numeric|max:999000000',
         ]);
 
         $attributes['user_id'] = auth()->id();
-        $attributes['image'] = $request->file('image')->store('prop_img');
+        $request->file('image')->store('/public/prop_img');
+        $attributes['image'] = $request->file('image')->hashName();
 
         Property::create($attributes);
 
@@ -49,6 +52,7 @@ class PropertiesController extends Controller
     {
         return view('properties.edit', [
             'property' => $property,
+            dd($property->tenants)
         ]);
     }
 
@@ -71,7 +75,8 @@ class PropertiesController extends Controller
         ];
 
         if ($request->has('image')) {
-            $attributes['image'] = $request->file('image')->store('prop_img');
+            $request->file('image')->store('/public/prop_img');
+            $attributes['image'] = $request->file('image')->hashName();
         }
 
         $property->update($attributes);

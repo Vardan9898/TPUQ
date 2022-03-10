@@ -84,22 +84,13 @@ a {
 }
 @-webkit-keyframes pulse {
     0% {
-        -moz-transform: scale(0.9);
-        -ms-transform: scale(0.9);
-        -webkit-transform: scale(0.9);
         transform: scale(0.9);
     }
     70% {
-        -moz-transform: scale(1);
-        -ms-transform: scale(1);
-        -webkit-transform: scale(1);
         transform: scale(1);
         box-shadow: 0 0 0 50px rgba(90, 153, 212, 0);
     }
     100% {
-        -moz-transform: scale(0.9);
-        -ms-transform: scale(0.9);
-        -webkit-transform: scale(0.9);
         transform: scale(0.9);
         box-shadow: 0 0 0 0 rgba(90, 153, 212, 0);
     }
@@ -142,6 +133,12 @@ a {
 .search-container .search-btn .fas{
     color: #5cbdbb;
 }
+@-webkit-keyframes hoverShake {
+    0% {transform: skew(0deg,0deg);}
+    25% {transform: skew(5deg, 5deg);}
+    75% {transform: skew(-5deg, -5deg);}
+    100% {transform: skew(0deg,0deg);}
+}
 @keyframes hoverShake {
     0% {transform: skew(0deg,0deg);}
     25% {transform: skew(5deg, 5deg);}
@@ -149,5 +146,6 @@ a {
     100% {transform: skew(0deg,0deg);}
 }
 .search-container:hover{
-    animation: hoverShake 0.15s linear 3;
+    -webkit-animation: hoverShake 0.15s linear 3;
+            animation: hoverShake 0.15s linear 3;
 }

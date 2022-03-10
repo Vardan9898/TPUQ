@@ -25,7 +25,7 @@ class RegisterController extends Controller
             'password' => 'required|string|max:255|min:6',
             'image'    => 'required|image|max:10240',
         ]);
-        $attributes['image'] = request()->file('image')->store('images');
+        $attributes['image'] = request()->file('image')->store('public/images');
 
         $user = User::create($attributes);
         auth()->login($user);

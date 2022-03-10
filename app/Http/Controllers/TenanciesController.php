@@ -27,7 +27,7 @@ class TenanciesController extends Controller
     {
         $property->tenancies()->create([
             'user_id'   => request()->user()->id,
-            'tenant_id' => request('tenant'),
+            'tenant_id' => request('tenant_id'),
         ]);
 
         return redirect()->action([TenanciesController::class, 'index'])->with('success', 'Tenancy created!');
@@ -37,7 +37,7 @@ class TenanciesController extends Controller
     {
         return view('tenancies.edit', [
             'tenancy'        => $tenancy,
-            'selectedTenant' => $tenancy->tenant->id,
+            'selectedTenant' => $tenancy->tenant,
             'tenants'        => Tenant::latest()->get(),
         ]);
     }
